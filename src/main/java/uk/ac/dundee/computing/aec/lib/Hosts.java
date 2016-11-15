@@ -15,7 +15,7 @@ public class Hosts {
     Driver driver=null;
     public Hosts()
     {
-    driver = GraphDatabase.driver( "bolt://0.0.0.0", AuthTokens.basic( "neo4j", "XXXX" ) );
+    driver = GraphDatabase.driver( "bolt://0.0.0.0", AuthTokens.basic( "neo4j", "XXX" ) );
     session = driver.session();
     }
     
