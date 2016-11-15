@@ -7,6 +7,7 @@ package uk.ac.dundee.computing.aec.filmwriter;
 import java.util.LinkedList;
 import uk.ac.dundee.computing.aec.filmwriter.model.Films;
 import uk.ac.dundee.computing.aec.filmwriter.model.People;
+import uk.ac.dundee.computing.aec.lib.Report;
 /**
  *
  * @author andycobley
@@ -24,7 +25,8 @@ public class Writer {
         pp.writePeople();
         LinkedList<String> names = pp.getNames();
         ff.watchfilms(names);
-        
+        Report rr=new Report();
+        rr.getReport(names, "FilmsReport.txt");
         
     }
     

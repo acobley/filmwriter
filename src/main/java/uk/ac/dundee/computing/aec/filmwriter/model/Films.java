@@ -156,7 +156,7 @@ public class Films {
         while (iterator.hasNext()) {
             film = (String) iterator.next();
             catagory = categories[(int) ((double) categories.length * Math.random())];
-            session.run("CREATE (a:film {name:'" + film + "',category:'" + catagory + "'})");
+            session.run("CREATE (a:film {name:'" + film + "',catagory:'" + catagory + "'})");
         }
         session.close();
         host.close();
@@ -165,14 +165,14 @@ public class Films {
     public void watchfilms(LinkedList<String> names){
         Hosts host = new Hosts();
         session = host.getSession();
-        Iterator<String> iterator = ttl.iterator();
+        Iterator<String> iterator = names.iterator();
         while (iterator.hasNext()) {
-           String film = (String) iterator.next(); 
-           int num =3+(int)(10*Math.random());
+           String name = (String) iterator.next(); 
+           int num =1+(int)(6*Math.random());
            for (int i=1;i<num;i++){
-               int you=(int)((names.size() - 1) * Math.random());
+               int iFilm=(int)((ttl.size() - 1) * Math.random());
                
-                 String name =(String)names.get(you);
+                 String film =(String)ttl.get(iFilm);
                  session.run("MATCH (a:person {name:\""+name+"\"})  MATCH (b:film {name:\""+film+"\"}) create (a)-[watched:WATCHED]->(b)");
            }
         }
