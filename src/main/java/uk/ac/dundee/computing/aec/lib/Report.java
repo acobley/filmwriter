@@ -75,63 +75,14 @@ public class Report {
     }
 
     public void MoveToHDFS() {
-        try {
-            StringBuffer output = new StringBuffer();
-            Process p = Runtime.getRuntime().exec("/usr/local/bin/docker exec hadoop-test hadoop fs -rm Data/FilmsReport.txt");
-            p.waitFor();
-            BufferedReader  reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line="";
-            output= new StringBuffer();
-              while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
-            }
-            System.out.println(output);
-             reader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-            line = "";
-            while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
-            }
+        SystemExec ex= new SystemExec();
+           
+            ex.Run("/usr/local/bin/docker exec hadoop-test hadoop fs -rm Data/FilmsReport.txt");
+            ex.Run("/usr/local/bin/docker exec hadoop-test hadoop fs -mkdir Data");
+            ex.Run("/usr/local/bin/docker exec hadoop-test hadoop fs -put /home/FilmsReport.txt Data");
+            ex.Run("/usr/local/bin/docker exec hadoop-test hive -f /home/An.hive");
+            System.out.println("Finished Hive");
+            ex.Run("/usr/local/bin/docker exec hadoop-test hadoop fs -get /home/result/000000_0 /home");
             
-            System.out.println(output);
-            
-             p = Runtime.getRuntime().exec("/usr/local/bin/docker exec hadoop-test hadoop fs -mkdir Data");
-            p.waitFor();
-            reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-            line = "";
-            while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
-            }
-            
-           reader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-            line = "";
-            while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
-            }
-            
-            System.out.println(output);
-
-            p = Runtime.getRuntime().exec("/usr/local/bin/docker exec hadoop-test hadoop fs -put /home/FilmsReport.txt Data");
-            p.waitFor();
-            reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            line="";
-            output= new StringBuffer();
-              while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
-            }
-            System.out.println(output);
-             reader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-            line = "";
-            while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
-            }
-            
-            System.out.println(output);
-        } catch (Exception et) {
-            System.out.println("Can't move to Hadoop" + et);
-        }
     }
 }
