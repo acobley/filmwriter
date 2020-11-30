@@ -26,7 +26,7 @@ public class Writer {
         LinkedList<String> names = pp.getNames();
         ff.watchfilms(names);
         Report rr=new Report();
-        rr.getReport(names, "/Users/andy/Documents/docker/hadoop/data/FilmsReport.txt");
+        rr.getReport(names, "/Users/andyc/Documents/docker/hadoop/data/FilmsReport.txt");
         rr.MoveToHDFS();
     }
     

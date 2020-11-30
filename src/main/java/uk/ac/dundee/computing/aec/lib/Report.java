@@ -22,9 +22,8 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.LinkedList;
-import org.neo4j.driver.v1.Record;
-import org.neo4j.driver.v1.Session;
-import org.neo4j.driver.v1.StatementResult;
+import org.neo4j.driver.*;
+
 
 /**
  *
@@ -51,7 +50,7 @@ public class Report {
         }
         while (iterator.hasNext()) {
             String name = (String) iterator.next();
-            StatementResult result = session.run("MATCH (user:person {name:'" + name + "'})-[:Friend]->(f)-[:WATCHED]->(m:film) RETURN m.name AS title, m.catagory AS catagory");
+            Result result = session.run("MATCH (user:person {name:'" + name + "'})-[:Friend]->(f)-[:WATCHED]->(m:film) RETURN m.name AS title, m.catagory AS catagory");
             while (result.hasNext()) {
                 Record record = result.next();
                 String out = name + ": " + record.get("title").asString() + ": " + record.get("catagory").asString() + "\n";

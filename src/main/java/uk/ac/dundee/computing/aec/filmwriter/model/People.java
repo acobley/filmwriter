@@ -8,7 +8,7 @@ package uk.ac.dundee.computing.aec.filmwriter.model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import org.neo4j.driver.v1.Session;
+import org.neo4j.driver.*;
 import uk.ac.dundee.computing.aec.lib.Hosts;
 
 /**

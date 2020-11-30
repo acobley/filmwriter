@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import static java.util.Spliterators.iterator;
-import org.neo4j.driver.v1.*;
+import org.neo4j.driver.*;
 import uk.ac.dundee.computing.aec.lib.Hosts;
 
 
@@ -168,7 +168,7 @@ public class Films {
         Iterator<String> iterator = names.iterator();
         while (iterator.hasNext()) {
            String name = (String) iterator.next(); 
-           int num =1+(int)(6*Math.random());
+           int num =1+(int)(25*Math.random());
            for (int i=1;i<num;i++){
                int iFilm=(int)((ttl.size() - 1) * Math.random());
                

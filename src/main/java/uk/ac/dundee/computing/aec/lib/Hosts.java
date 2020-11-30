@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package uk.ac.dundee.computing.aec.lib;
-import org.neo4j.driver.v1.*;
+import org.neo4j.driver.*;
 
 /**
  *
@@ -16,6 +16,7 @@ public class Hosts {
     public Hosts()
     {
     driver = GraphDatabase.driver( "bolt://0.0.0.0", AuthTokens.basic( "neo4j", "Sp8c3d0ut!" ) );
+    //driver = GraphDatabase.driver( "bolt://0.0.0.0", AuthTokens.basic( "neo4j", "ne04j" ) );
     session = driver.session();
     }
     
